@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
-    private List<Vertex> vertices;
+    public static List<Vertex> vertices;
 
     public Graph() {
         vertices = new ArrayList<>();
@@ -15,6 +15,7 @@ public class Graph {
     public List<Vertex> getVertices() {
         return vertices;
     }
+
     public int countVertices() {
         return vertices.size();
     }
