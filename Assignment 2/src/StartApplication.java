@@ -1,103 +1,87 @@
 
-import java.util.List;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-// public class StartApplication{
-    
-//     public void startApplication(){
-//         JFrame frame = new JFrame("Bus Route Tracking Application");
-//         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//         frame.setSize(300,300);
-//         JButton button = new JButton("Press");
-//         frame.getContentPane().add(button); // Adds Button to content pane of frame
-//         frame.setVisible(true);
-        
-//     }
-
-//     public static void main(String[] args) {
-//         StartApplication start= new StartApplication();
-//         start.startApplication();
-//         Graph graph = new Graph();       
-
-        // // Create vertices
-        // Vertex v1 = new Vertex(1);
-        // Vertex v2 = new Vertex(2);
-        // Vertex v3 = new Vertex(3);
-        // Vertex v4 = new Vertex(4);
-        // Vertex v5 = new Vertex(5);
-
-        // // Add vertices to the graph
-        // graph.addVertex(v1);
-        // graph.addVertex(v2);
-        // graph.addVertex(v3);
-        // graph.addVertex(v4);
-        // graph.addVertex(v5);
-
-        
-        // // Create edges
-        // Edge e1 = new Edge(v1, v2);
-        // Edge e2 = new Edge(v2, v3);
-        // Edge e3 = new Edge(v3, v4);
-        // Edge e4 = new Edge(v4, v5);
-        // Edge e5 = new Edge(v1, v3);
-        // Edge e6 = new Edge(v2, v4);
-
-        // // Add edges to the vertices
-        // v1.addAdjacentEdge(e1);
-        // v2.addAdjacentEdge(e2);
-        // v3.addAdjacentEdge(e3);
-        // v4.addAdjacentEdge(e4);
-        // v1.addAdjacentEdge(e5);
-        // v2.addAdjacentEdge(e6);
-
-        
-//         // Perform DFS or any other operations on the graph
-//         DepthFirstSearch dfs = new DepthFirstSearch();
-//         List<Edge> shortestPath = dfs.findPathDFS(v1, v3, graph);
-
-//         System.out.println("V1: "+ v1);
-//         System.out.println("V3: "+ v3);
-//         System.out.println("The shortest path from "+v1+" to "+v3+": ");
-//         for(int i=0; i<shortestPath.size(); i++){
-//             System.out.println(shortestPath.get(i));
-//         }
-//     }
-
-// }
-
-
 public class StartApplication extends JFrame {
     public static JFrame frame = new JFrame();
-    JButton searchButton = new JButton("Search Route");
-    JButton addButton = new JButton("Add Route");
-    JButton addStationButton = new JButton("Add New Station");
-    JPanel panel1 = new JPanel();
+    JButton AdminButton = new JButton("Admin");
+    JButton UserButton = new JButton("User");
+    JPanel headerPanel = new JPanel();
+    JPanel userPanel = new JPanel();
+    JPanel adminPanel = new JPanel();
+    JPanel footerPanel = new JPanel();
     public static Graph graph = new Graph();
 
     public StartApplication() {
 
         initializeBasicGraph();
         frame.setTitle("Bus Route Tracking App");
-        frame.setSize(800, 600);
+        frame.setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        frame.setSize(745, 400);
+        frame.setLayout(new BorderLayout());
+        frame.add(headerPanel, BorderLayout.NORTH);
+
+        JLabel headerLabel = new JLabel();
+        headerLabel.setText("Bus Route Tracking Application");
+        headerLabel.setVerticalAlignment (JLabel.CENTER);
+        headerLabel.setHorizontalAlignment(JLabel.RIGHT);
+        headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
+        headerLabel.setForeground(new Color(0x2f3e46));
+        headerPanel.add(headerLabel);
+
+
+        JLabel roleLabel = new JLabel();
+        roleLabel.setText("My Role Is:");
+        roleLabel.setVerticalAlignment (JLabel.CENTER);
+        roleLabel.setHorizontalAlignment(JLabel.RIGHT);
+        roleLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
+        roleLabel.setForeground(new Color(0x2f3e46));
+        headerPanel.add(roleLabel);
+
+        AdminButton.setForeground(Color.white);
+        AdminButton.setBackground(new Color(0x2f3e46));
+        AdminButton.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+        AdminButton.setPreferredSize(new Dimension(100, 100));
+        adminPanel.setPreferredSize(new Dimension(367, 400));
+        adminPanel.add(AdminButton);
+
+        UserButton.setForeground(Color.white);
+        UserButton.setBackground(new Color(0x2f3e46));
+        UserButton.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+        UserButton.setPreferredSize(new Dimension(100, 100));
+        userPanel.setPreferredSize(new Dimension(366, 400));
+        userPanel.add(UserButton);
+
+        JLabel footerLabel = new JLabel();
+        footerLabel.setText("Prepared by Chu Jun & Zee Ching for CPT212 Assignment 2");
+        footerLabel.setFont(new Font("Bradley Hand ITC", Font.BOLD, 18)); //set font
+        footerLabel.setHorizontalTextPosition(JLabel.LEFT);
+        footerLabel.setVerticalTextPosition(JLabel.BOTTOM);
+        footerPanel.add(footerLabel);
+
+        headerPanel.setBackground(new Color(0x84a98c));
+        adminPanel.setBackground(new Color(0xcad2c5));
+        userPanel.setBackground(new Color(0xcad2c5));
+        footerPanel.setBackground(new Color(0x84a98c));
+        
+
         ClickListener click1 = new ClickListener();
         ClickListener click2 = new ClickListener();
-        ClickListener click3 = new ClickListener();
 
-        searchButton.addActionListener(click1);
-        addButton.addActionListener(click2);
-        addStationButton.addActionListener(click3);
-        panel1.add(addStationButton);
-        panel1.add(searchButton);
-        panel1.add(addButton);
+        AdminButton.addActionListener(click1);
+        UserButton.addActionListener(click2);
+        // panel1.add(UserButton);
         
-        frame.add(panel1, BorderLayout.CENTER);
+        frame.add(adminPanel, BorderLayout.WEST);
+        frame.add(userPanel, BorderLayout.EAST);
+        frame.add(footerPanel, BorderLayout.SOUTH);
         
         frame.setVisible(true);
     }
@@ -106,21 +90,15 @@ public class StartApplication extends JFrame {
     {
         public void actionPerformed(ActionEvent e)
         {
-            if(e.getSource() == searchButton)
+            if(e.getSource() == AdminButton)
             {
                 frame.setVisible(false);
-                new SearchRouteGUI();
+                new AdminPage();
             }
-            else if(e.getSource() == addButton){
+            else if(e.getSource() == UserButton){
                 frame.setVisible(false);
-                new AddRouteGUI();
-            }
-            else if(e.getSource() == addStationButton){
-                frame.setVisible(false);
-                new AddStationGUI();
-                
-            } 
-            
+                new UserPage();
+            }          
 
         }
     }

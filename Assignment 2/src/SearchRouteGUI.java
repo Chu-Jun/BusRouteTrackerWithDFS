@@ -18,6 +18,7 @@ public class SearchRouteGUI {
 
         JButton backButton = new JButton("Back to main page");
         JFrame frame = new JFrame();
+        frame.setResizable(false);
         JPanel panel = new JPanel();
         frame.setTitle("Bus Route Tracking App");
         String[] station = new String[StartApplication.graph.countVertices()];

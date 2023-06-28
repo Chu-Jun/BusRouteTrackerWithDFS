@@ -17,10 +17,10 @@ public class AddRouteGUI {
     public AddRouteGUI() {
 
         JFrame frame = new JFrame();
+        frame.setResizable(false);
         JPanel panel = new JPanel();
         frame.setTitle("Bus Route Tracking App");
         String[] station = new String[StartApplication.graph.countVertices()];
-        //int[] stationIndex = new int[StartApplication.graph.countVertices()];
         System.out.println(StartApplication.graph.countVertices());
         List<Vertex> list= StartApplication.graph.getVertices();
         for(int i=0; i<StartApplication.graph.countVertices(); i++){

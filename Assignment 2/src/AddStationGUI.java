@@ -16,6 +16,7 @@ public class AddStationGUI {
 
         JButton backButton = new JButton("Back to main page");
         JFrame frame = new JFrame();
+        frame.setResizable(false);
         JPanel panel = new JPanel();
         frame.setTitle("Bus Route Tracking App");
         
@@ -56,6 +57,7 @@ public class AddStationGUI {
         JTextField sourceTextField = new JTextField();
         sourceTextField.setColumns(20);
         sourcePanel.add(sourceTextField);
+        sourcePanel.setPreferredSize(new Dimension(745, 400));
 
         addStationButton = new JButton("Add Station");
         addStationButton.setFont(new Font("Arial", Font.BOLD,15));
