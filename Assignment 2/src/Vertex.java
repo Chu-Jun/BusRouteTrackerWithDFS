@@ -34,4 +34,9 @@ public class Vertex {
     public List<Edge> getAdjacentEdges() {
         return adjacentEdges;
     }
+
+    public void deleteAdjacentEdge(int index){
+        List<Edge> temp = this.getAdjacentEdges();
+        temp.remove(index);
+    }
 }

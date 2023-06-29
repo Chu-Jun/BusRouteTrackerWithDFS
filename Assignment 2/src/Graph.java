@@ -19,5 +19,9 @@ public class Graph {
     public int countVertices() {
         return vertices.size();
     }
+
+    public void removeVertex(int index){
+        vertices.remove(index);
+    }
     
 }

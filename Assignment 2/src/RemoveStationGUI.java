@@ -5,25 +5,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class SearchRouteGUI {
-    private JButton findRouteButton;    
+public class RemoveStationGUI {
+    private JButton addStationButton;    
     JPanel headerPanel = new JPanel();
     JPanel sourcePanel = new JPanel();
-    JPanel destinationPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel footerPanel = new JPanel();
-    List<Edge> path;
+    int count = 0;
 
-    public SearchRouteGUI() {
+    public RemoveStationGUI() {
 
         JButton backButton = new JButton("Back to main page");
         JFrame frame = new JFrame();
         frame.setResizable(false);
         JPanel panel = new JPanel();
         frame.setTitle("Bus Route Tracking App");
+
         String[] station = new String[StartApplication.graph.countVertices()];
 
-        System.out.println(StartApplication.graph.countVertices());
         List<Vertex> list= StartApplication.graph.getVertices();
         for(int i=0; i<StartApplication.graph.countVertices(); i++){
             
@@ -32,15 +31,12 @@ public class SearchRouteGUI {
         }
 
         final JComboBox<String> stationList = new JComboBox<String>(station);
-        final JComboBox<String> destinationList = new JComboBox<String>(station);
         
         frame.setSize(745, 400);
         frame.setLayout(new BorderLayout());
         frame.add(headerPanel, BorderLayout.NORTH);
     
-        //Set Contents Panel 
         frame.add(sourcePanel, BorderLayout.WEST);
-        frame.add(destinationPanel, BorderLayout.EAST);
 
         JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
         bottomPanel.add(buttonPanel);
@@ -49,9 +45,9 @@ public class SearchRouteGUI {
 
         headerPanel.setBackground(new Color(0x6096B4));
         sourcePanel.setBackground(new Color(0xBDCDD6));
-        destinationPanel.setBackground(new Color(0xBDCDD6));
         buttonPanel.setBackground(new Color(0xBDCDD6));
-        footerPanel.setBackground(new Color(0x6096B4));   
+        footerPanel.setBackground(new Color(0x6096B4));
+        
        
         JLabel headerLabel = new JLabel();
         headerLabel.setText("Bus Route Tracking Application");
@@ -62,7 +58,7 @@ public class SearchRouteGUI {
         headerPanel.add(headerLabel);
 
         JLabel sourceLabel = new JLabel();
-        sourceLabel.setText("Source Stop:");
+        sourceLabel.setText("New Station:");
         sourceLabel.setHorizontalTextPosition(JLabel.CENTER);
         sourceLabel.setVerticalTextPosition(JLabel.BOTTOM);
         sourceLabel.setForeground(new Color(0x2f3e46)); //set font color
@@ -72,26 +68,13 @@ public class SearchRouteGUI {
         sourcePanel.add(sourceLabel);
         stationList.setPrototypeDisplayValue("Select station that you prefer:  ");
         sourcePanel.add(stationList);
+        sourcePanel.setPreferredSize(new Dimension(745, 400));
 
-
-        JLabel destinationLabel = new JLabel();
-        destinationLabel.setText("Destination Stop:");
-        destinationLabel.setHorizontalTextPosition(JLabel.CENTER);
-        destinationLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        destinationLabel.setForeground(new Color(0x2f3e46)); //set font color
-        destinationLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20)); //set font
-        destinationLabel.setVerticalAlignment(JLabel.CENTER);
-        destinationLabel.setHorizontalAlignment (JLabel.LEFT);
-        destinationPanel.add(destinationLabel);
-
-        destinationList.setPrototypeDisplayValue("Select station that you prefer:  ");
-        destinationPanel.add(destinationList);
-
-        findRouteButton = new JButton("Find Route");
-        findRouteButton.setFont(new Font("Arial", Font.BOLD,15));
-        findRouteButton.setBackground (new Color (0x6096B4));
-        findRouteButton.setForeground (new Color (0xcad2c5));
-        buttonPanel.add(findRouteButton);
+        addStationButton = new JButton("Remove Station");
+        addStationButton.setFont(new Font("Arial", Font.BOLD,15));
+        addStationButton.setBackground (new Color (0x6096B4));
+        addStationButton.setForeground (new Color (0xcad2c5));
+        buttonPanel.add(addStationButton);
 
         backButton.setFont(new Font("Arial", Font.BOLD,15));
         backButton.setBackground (new Color (0x6096B4));
@@ -108,47 +91,24 @@ public class SearchRouteGUI {
         frame.add(panel);
         frame.setVisible(true);
 
-        findRouteButton.addActionListener(new ActionListener() {
+        addStationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DepthFirstSearch searchObj = new DepthFirstSearch();
-                searchObj.edges = null;
-                
-                String sourceStop = String.valueOf(stationList.getSelectedItem());
-                String destinationStop = String.valueOf(destinationList.getSelectedItem());
+                String station = String.valueOf(stationList.getSelectedItem());
 
-                Vertex sourceVertex = list.get(0), destinationVertex = list.get(0);
+                List<Vertex> list = StartApplication.graph.getVertices();
 
-                for(int i=1; i<station.length; i++){
-                    if(sourceStop == station[i]){
-                        //int stationIndex = i;
-                        sourceVertex = list.get(i);
-                    }if(destinationStop == station[i]){
-                        //int stationIndex = i;
-                        destinationVertex = list.get(i);
-                    }
-                }
-
-                path = searchObj.findPathDFS(sourceVertex, destinationVertex);
-                String[] stationInPath = new String[path.size()];
-
-                for(int i=0; i<path.size(); i++){
-                    Edge temp = path.get(i);
-                    Vertex vtemp = temp.getDestination();
-                    stationInPath[i] = vtemp.getStationName(0);
-                }
-
-                String message = "Route from " + sourceStop + " to " + destinationStop + " found!\n"
-                + "You may go through station below to reach the destination: \n"+  sourceStop + "\n";
-
-                for(int i=0; i<stationInPath.length; i++){
-                    message += stationInPath[i] + "\n";
-                }
-
-                JOptionPane.showMessageDialog(null,
-                        message,
-                        "Route Found",
+                for(int i=0; i<list.size(); i++){
+                    Vertex temp = list.get(i);
+                    if(temp.getStationName(0) == station){
+                        JOptionPane.showMessageDialog(null,
+                        "Station " + station + " has been removed!",
+                        "Station removed",
                         JOptionPane.INFORMATION_MESSAGE);
+
+                        StartApplication.graph.removeVertex(i);
+                    }
+                }  
             }
         });
         backButton.addActionListener(new ActionListener() {

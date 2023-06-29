@@ -27,7 +27,6 @@ public class AddRouteGUI {
             
             Vertex temp = list.get(i);
             station[i] = temp.getStationName(0);
-            // stationIndex[i] = temp.getIndex();
         }
 
         final JComboBox<String> stationList = new JComboBox<String>(station);
@@ -38,10 +37,6 @@ public class AddRouteGUI {
         frame.add(headerPanel, BorderLayout.NORTH);
     
         //Set Contents Panel 
-        JPanel centerPanel = new JPanel (new GridLayout(1,2));
-        // centerPanel.add(sourcePanel);
-        // centerPanel.add(destinationPanel);
-        frame.add(centerPanel, BorderLayout.CENTER);
         frame.add(sourcePanel, BorderLayout.WEST);
         frame.add(destinationPanel, BorderLayout.EAST);
 
@@ -50,11 +45,11 @@ public class AddRouteGUI {
         bottomPanel.add(footerPanel);
         frame.add(bottomPanel, BorderLayout.SOUTH);
 
-        headerPanel.setBackground(new Color(0x84a98c));
-        sourcePanel.setBackground(new Color(0xcad2c5));
-        destinationPanel.setBackground(new Color(0xcad2c5));
-        buttonPanel.setBackground(new Color(0xcad2c5));
-        footerPanel.setBackground(new Color(0x84a98c));
+        headerPanel.setBackground(new Color(0x6096B4));
+        sourcePanel.setBackground(new Color(0xBDCDD6));
+        destinationPanel.setBackground(new Color(0xBDCDD6));
+        buttonPanel.setBackground(new Color(0xBDCDD6));
+        footerPanel.setBackground(new Color(0x6096B4));
         
        
         JLabel headerLabel = new JLabel();
@@ -62,7 +57,7 @@ public class AddRouteGUI {
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
         headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
-        headerLabel.setForeground(new Color(0x2f3e46));
+        headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
         JLabel sourceLabel = new JLabel();
@@ -93,12 +88,12 @@ public class AddRouteGUI {
 
         addRouteButton = new JButton("Add Route");
         addRouteButton.setFont(new Font("Arial", Font.BOLD,15));
-        addRouteButton.setBackground (new Color (0x354f52));
+        addRouteButton.setBackground (new Color (0x6096B4));
         addRouteButton.setForeground (new Color (0xcad2c5));
         buttonPanel.add(addRouteButton);
 
         backButton.setFont(new Font("Arial", Font.BOLD,15));
-        backButton.setBackground (new Color (0x354f52));
+        backButton.setBackground (new Color (0x6096B4));
         backButton.setForeground (new Color (0xcad2c5));
         buttonPanel.add(backButton);
 

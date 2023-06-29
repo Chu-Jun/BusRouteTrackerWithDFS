@@ -31,10 +31,10 @@ public class AddStationGUI {
         bottomPanel.add(footerPanel);
         frame.add(bottomPanel, BorderLayout.SOUTH);
 
-        headerPanel.setBackground(new Color(0x84a98c));
-        sourcePanel.setBackground(new Color(0xcad2c5));
-        buttonPanel.setBackground(new Color(0xcad2c5));
-        footerPanel.setBackground(new Color(0x84a98c));
+        headerPanel.setBackground(new Color(0x6096B4));
+        sourcePanel.setBackground(new Color(0xBDCDD6));
+        buttonPanel.setBackground(new Color(0xBDCDD6));
+        footerPanel.setBackground(new Color(0x6096B4));
         
        
         JLabel headerLabel = new JLabel();
@@ -42,7 +42,7 @@ public class AddStationGUI {
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
         headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
-        headerLabel.setForeground(new Color(0x2f3e46));
+        headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
         JLabel sourceLabel = new JLabel();
@@ -61,12 +61,12 @@ public class AddStationGUI {
 
         addStationButton = new JButton("Add Station");
         addStationButton.setFont(new Font("Arial", Font.BOLD,15));
-        addStationButton.setBackground (new Color (0x354f52));
+        addStationButton.setBackground (new Color (0x6096B4));
         addStationButton.setForeground (new Color (0xcad2c5));
         buttonPanel.add(addStationButton);
 
         backButton.setFont(new Font("Arial", Font.BOLD,15));
-        backButton.setBackground (new Color (0x354f52));
+        backButton.setBackground (new Color (0x6096B4));
         backButton.setForeground (new Color (0xcad2c5));
         buttonPanel.add(backButton);
 

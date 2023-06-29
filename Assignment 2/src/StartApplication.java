@@ -17,8 +17,8 @@ public class StartApplication extends JFrame {
     public static Graph graph = new Graph();
 
     public StartApplication() {
-
         initializeBasicGraph();
+        System.out.println(graph.countVertices());
         frame.setTitle("Bus Route Tracking App");
         frame.setResizable(false);
         setLocationRelativeTo(null);
@@ -33,7 +33,7 @@ public class StartApplication extends JFrame {
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
         headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
-        headerLabel.setForeground(new Color(0x2f3e46));
+        headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
 
@@ -46,14 +46,14 @@ public class StartApplication extends JFrame {
         headerPanel.add(roleLabel);
 
         AdminButton.setForeground(Color.white);
-        AdminButton.setBackground(new Color(0x2f3e46));
+        AdminButton.setBackground(new Color(0x6096B4));
         AdminButton.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         AdminButton.setPreferredSize(new Dimension(100, 100));
         adminPanel.setPreferredSize(new Dimension(367, 400));
         adminPanel.add(AdminButton);
 
         UserButton.setForeground(Color.white);
-        UserButton.setBackground(new Color(0x2f3e46));
+        UserButton.setBackground(new Color(0x6096B4));
         UserButton.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         UserButton.setPreferredSize(new Dimension(100, 100));
         userPanel.setPreferredSize(new Dimension(366, 400));
@@ -66,10 +66,10 @@ public class StartApplication extends JFrame {
         footerLabel.setVerticalTextPosition(JLabel.BOTTOM);
         footerPanel.add(footerLabel);
 
-        headerPanel.setBackground(new Color(0x84a98c));
-        adminPanel.setBackground(new Color(0xcad2c5));
-        userPanel.setBackground(new Color(0xcad2c5));
-        footerPanel.setBackground(new Color(0x84a98c));
+        headerPanel.setBackground(new Color(0x6096B4));
+        adminPanel.setBackground(new Color(0xBDCDD6));
+        userPanel.setBackground(new Color(0xBDCDD6));
+        footerPanel.setBackground(new Color(0x6096B4));
         
 
         ClickListener click1 = new ClickListener();
@@ -77,13 +77,14 @@ public class StartApplication extends JFrame {
 
         AdminButton.addActionListener(click1);
         UserButton.addActionListener(click2);
-        // panel1.add(UserButton);
         
         frame.add(adminPanel, BorderLayout.WEST);
         frame.add(userPanel, BorderLayout.EAST);
         frame.add(footerPanel, BorderLayout.SOUTH);
         
         frame.setVisible(true);
+
+        
     }
 
     private class ClickListener implements ActionListener
@@ -92,6 +93,7 @@ public class StartApplication extends JFrame {
         {
             if(e.getSource() == AdminButton)
             {
+                
                 frame.setVisible(false);
                 new AdminPage();
             }
@@ -137,6 +139,8 @@ public class StartApplication extends JFrame {
         gelugor.addAdjacentEdge(e5);
     }
 
+
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {

@@ -22,6 +22,8 @@ public class SearchStationGUI {
         String[] station = new String[StartApplication.graph.countVertices()];
 
         System.out.println(StartApplication.graph.countVertices());
+
+
         List<Vertex> list= StartApplication.graph.getVertices();
         for(int i=0; i<StartApplication.graph.countVertices(); i++){
             
@@ -44,10 +46,10 @@ public class SearchStationGUI {
         bottomPanel.add(footerPanel);
         frame.add(bottomPanel, BorderLayout.SOUTH);
 
-        headerPanel.setBackground(new Color(0x84a98c));
-        centerPanel.setBackground(new Color(0xcad2c5));
-        buttonPanel.setBackground(new Color(0xcad2c5));
-        footerPanel.setBackground(new Color(0x84a98c));
+        headerPanel.setBackground(new Color(0x6096B4));
+        centerPanel.setBackground(new Color(0xBDCDD6));
+        buttonPanel.setBackground(new Color(0xBDCDD6));
+        footerPanel.setBackground(new Color(0x6096B4));
         
        
         JLabel headerLabel = new JLabel();
@@ -55,7 +57,7 @@ public class SearchStationGUI {
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
         headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
-        headerLabel.setForeground(new Color(0x2f3e46));
+        headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
         JLabel stationLabel = new JLabel();
@@ -73,12 +75,12 @@ public class SearchStationGUI {
 
         findStationButton = new JButton("Find Station");
         findStationButton.setFont(new Font("Arial", Font.BOLD,15));
-        findStationButton.setBackground (new Color (0x354f52));
+        findStationButton.setBackground (new Color (0x6096B4));
         findStationButton.setForeground (new Color (0xcad2c5));
         buttonPanel.add(findStationButton);
 
         backButton.setFont(new Font("Arial", Font.BOLD,15));
-        backButton.setBackground (new Color (0x354f52));
+        backButton.setBackground (new Color (0x6096B4));
         backButton.setForeground (new Color (0xcad2c5));
         buttonPanel.add(backButton);
 
@@ -108,13 +110,13 @@ public class SearchStationGUI {
                     if(temp.getStationName(0) == Station){
                         JOptionPane.showMessageDialog(null,
                         "The station selected exists!",
-                        "Route Found",
+                        "Station Found",
                         JOptionPane.INFORMATION_MESSAGE);
                         found = true;
                     }else if((i==list.size()-1) && (found == false)){
                         JOptionPane.showMessageDialog(null,
                         "The station selected does not exists!",
-                        "Route Not Found",
+                        "Station Not Found",
                         JOptionPane.INFORMATION_MESSAGE);
                     }
                 }

@@ -12,8 +12,6 @@ public class UserPage extends JFrame {
     JPanel headerPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel footerPanel = new JPanel();
-    public static Graph graph = new Graph();
-
 
     public UserPage() {
 
@@ -24,16 +22,16 @@ public class UserPage extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        headerPanel.setBackground(new Color(0x84a98c));
-        buttonPanel.setBackground(new Color(0xcad2c5));
-        footerPanel.setBackground(new Color(0x84a98c));
+        headerPanel.setBackground(new Color(0x6096B4));
+        buttonPanel.setBackground(new Color(0xBDCDD6));
+        footerPanel.setBackground(new Color(0x6096B4));
 
         JLabel headerLabel = new JLabel();
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
         headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
-        headerLabel.setForeground(new Color(0x2f3e46));
+        headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
         frame.add(headerPanel, BorderLayout.NORTH);
 
@@ -51,17 +49,17 @@ public class UserPage extends JFrame {
         gbc.weighty = 1;
 
         searchStationButton.setForeground(Color.white);
-        searchStationButton.setBackground(new Color(0x2f3e46));
+        searchStationButton.setBackground(new Color(0x6096B4));
         searchStationButton.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         searchStationButton.setPreferredSize(new Dimension(200, 80));
 
         searchRouteButton.setForeground(Color.white);
-        searchRouteButton.setBackground(new Color(0x2f3e46));
+        searchRouteButton.setBackground(new Color(0x6096B4));
         searchRouteButton.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         searchRouteButton.setPreferredSize(new Dimension(200, 80));
 
         backButton.setForeground(Color.white);
-        backButton.setBackground(new Color(0x2f3e46));
+        backButton.setBackground(new Color(0x6096B4));
         backButton.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         backButton.setPreferredSize(new Dimension(200, 80));
 

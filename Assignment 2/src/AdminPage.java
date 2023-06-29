@@ -8,11 +8,12 @@ public class AdminPage extends JFrame {
     public static JFrame frame = new JFrame();
     JButton addRouteButton = new JButton("Add Route");
     JButton addStationButton = new JButton("Add New Station");
+    JButton removeRouteButton = new JButton("Remove Route");
+    JButton removeStationButton = new JButton("Remove Station");
     JButton backButton = new JButton("Back to main page");
     JPanel headerPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel footerPanel = new JPanel();
-    public static Graph graph = new Graph();
 
 
     public AdminPage() {
@@ -24,16 +25,16 @@ public class AdminPage extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        headerPanel.setBackground(new Color(0x84a98c));
-        buttonPanel.setBackground(new Color(0xcad2c5));
-        footerPanel.setBackground(new Color(0x84a98c));
+        headerPanel.setBackground(new Color(0x6096B4));
+        buttonPanel.setBackground(new Color(0xBDCDD6));
+        footerPanel.setBackground(new Color(0x6096B4));
 
         JLabel headerLabel = new JLabel();
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
         headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
-        headerLabel.setForeground(new Color(0x2f3e46));
+        headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
         frame.add(headerPanel, BorderLayout.NORTH);
 
@@ -47,23 +48,36 @@ public class AdminPage extends JFrame {
         JPanel buttons = new JPanel(new GridBagLayout());
         buttons.add(addStationButton, gbc);
         buttons.add(addRouteButton, gbc);
+        buttons.add(removeRouteButton, gbc);
+        buttons.add(removeStationButton, gbc);
         buttons.add(backButton, gbc);
         gbc.weighty = 1;
 
         addStationButton.setForeground(Color.white);
-        addStationButton.setBackground(new Color(0x2f3e46));
+        addStationButton.setBackground(new Color(0x6096B4));
         addStationButton.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-        addStationButton.setPreferredSize(new Dimension(200, 80));
+        addStationButton.setPreferredSize(new Dimension(200, 50));
 
         addRouteButton.setForeground(Color.white);
-        addRouteButton.setBackground(new Color(0x2f3e46));
+        addRouteButton.setBackground(new Color(0x6096B4));
         addRouteButton.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-        addRouteButton.setPreferredSize(new Dimension(200, 80));
+        addRouteButton.setPreferredSize(new Dimension(200, 50));
+
+        removeRouteButton.setForeground(Color.white);
+        removeRouteButton.setBackground(new Color(0x6096B4));
+        removeRouteButton.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+        removeRouteButton.setPreferredSize(new Dimension(200, 50));
+
+        removeStationButton.setForeground(Color.white);
+        removeStationButton.setBackground(new Color(0x6096B4));
+        removeStationButton.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+        removeStationButton.setPreferredSize(new Dimension(200, 50));
+
 
         backButton.setForeground(Color.white);
-        backButton.setBackground(new Color(0x2f3e46));
+        backButton.setBackground(new Color(0x6096B4));
         backButton.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-        backButton.setPreferredSize(new Dimension(200, 80));
+        backButton.setPreferredSize(new Dimension(200, 50));
 
 
         buttonPanel.add(buttons);
@@ -81,10 +95,14 @@ public class AdminPage extends JFrame {
         ClickListener click1 = new ClickListener();
         ClickListener click2 = new ClickListener();
         ClickListener click3 = new ClickListener();
+        ClickListener click4 = new ClickListener();
+        ClickListener click5 = new ClickListener();
 
         addRouteButton.addActionListener(click1);
         addStationButton.addActionListener(click2);
-        backButton.addActionListener(click3);
+        removeRouteButton.addActionListener(click3);
+        removeStationButton.addActionListener(click4);
+        backButton.addActionListener(click5);
         
         frame.setVisible(true);
     }
@@ -101,7 +119,15 @@ public class AdminPage extends JFrame {
                 frame.dispose();
                 new AddStationGUI();
                 
-            } 
+            }
+            else if(e.getSource() == removeRouteButton){
+                frame.dispose();
+                new RemoveRouteGUI();
+            }
+            else if(e.getSource() == removeStationButton){
+                frame.dispose();
+                new RemoveStationGUI();
+            }
             else if(e.getSource() == backButton){
                 frame.dispose();
                 StartApplication.frame.setVisible(true);
