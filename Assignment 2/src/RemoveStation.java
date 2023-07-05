@@ -6,20 +6,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class RemoveStationGUI {
-    private JButton addStationButton;    
+public class RemoveStation {
+    JFrame frame = new JFrame();
+    private JButton addStationButton; 
+    JButton backButton = new JButton("Back to main page");   
     JPanel headerPanel = new JPanel();
     JPanel sourcePanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel footerPanel = new JPanel();
+    JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
+    JLabel headerLabel = new JLabel();
+    JLabel sourceLabel = new JLabel();
+    JLabel footerLabel = new JLabel();
     int count = 0;
 
-    public RemoveStationGUI() {
+    public RemoveStation() {
 
-        JButton backButton = new JButton("Back to main page");
-        JFrame frame = new JFrame();
         frame.setResizable(false);
-        JPanel panel = new JPanel();
         frame.setTitle("Bus Route Tracking App");
 
         String[] station = new String[StartApplication.graph.countVertices()];
@@ -36,10 +39,8 @@ public class RemoveStationGUI {
         frame.setSize(745, 400);
         frame.setLayout(new BorderLayout());
         frame.add(headerPanel, BorderLayout.NORTH);
-    
         frame.add(sourcePanel, BorderLayout.WEST);
 
-        JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
         bottomPanel.add(buttonPanel);
         bottomPanel.add(footerPanel);
         frame.add(bottomPanel, BorderLayout.SOUTH);
@@ -50,7 +51,6 @@ public class RemoveStationGUI {
         footerPanel.setBackground(new Color(0x6096B4));
         
        
-        JLabel headerLabel = new JLabel();
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -58,7 +58,6 @@ public class RemoveStationGUI {
         headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
-        JLabel sourceLabel = new JLabel();
         sourceLabel.setText("New Station:");
         sourceLabel.setHorizontalTextPosition(JLabel.CENTER);
         sourceLabel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -82,14 +81,12 @@ public class RemoveStationGUI {
         backButton.setForeground (new Color (0xcad2c5));
         buttonPanel.add(backButton);
 
-        JLabel footerLabel = new JLabel();
         footerLabel.setText("Prepared by Chu Jun & Zee Ching for CPT212 Assignment 2");
         footerLabel.setFont(new Font("Bradley Hand ITC", Font.BOLD, 18)); //set font
         footerLabel.setHorizontalTextPosition(JLabel.LEFT);
         footerLabel.setVerticalTextPosition(JLabel.BOTTOM);
         footerPanel.add(footerLabel);
 
-        frame.add(panel);
         frame.setVisible(true);
 
         addStationButton.addActionListener(new ActionListener() {

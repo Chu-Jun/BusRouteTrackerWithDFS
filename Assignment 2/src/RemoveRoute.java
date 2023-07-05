@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class RemoveRouteGUI {
+public class RemoveRoute {
     private JButton addRouteButton;    
     JButton backButton = new JButton("Back to main page");
     JPanel headerPanel = new JPanel();
@@ -14,12 +14,15 @@ public class RemoveRouteGUI {
     JPanel destinationPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel footerPanel = new JPanel();
+    JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
+    JLabel headerLabel = new JLabel();
+    JLabel sourceLabel = new JLabel();
+    JLabel destinationLabel = new JLabel();
 
-    public RemoveRouteGUI() {
+    public RemoveRoute() {
 
         JFrame frame = new JFrame();
         frame.setResizable(false);
-        JPanel panel = new JPanel();
         frame.setTitle("Bus Route Tracking App");
         String[] station = new String[StartApplication.graph.countVertices()];
         System.out.println(StartApplication.graph.countVertices());
@@ -41,7 +44,6 @@ public class RemoveRouteGUI {
         frame.add(sourcePanel, BorderLayout.WEST);
         frame.add(destinationPanel, BorderLayout.EAST);
 
-        JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
         bottomPanel.add(buttonPanel);
         bottomPanel.add(footerPanel);
         frame.add(bottomPanel, BorderLayout.SOUTH);
@@ -52,8 +54,6 @@ public class RemoveRouteGUI {
         buttonPanel.setBackground(new Color(0xBDCDD6));
         footerPanel.setBackground(new Color(0x6096B4));
         
-       
-        JLabel headerLabel = new JLabel();
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -61,7 +61,6 @@ public class RemoveRouteGUI {
         headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
-        JLabel sourceLabel = new JLabel();
         sourceLabel.setText("Source Stop:");
         sourceLabel.setHorizontalTextPosition(JLabel.CENTER);
         sourceLabel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -74,7 +73,6 @@ public class RemoveRouteGUI {
         stationList.setPrototypeDisplayValue("Select station that you prefer:  ");
         sourcePanel.add(stationList);
 
-        JLabel destinationLabel = new JLabel();
         destinationLabel.setText("Destination Stop:");
         destinationLabel.setHorizontalTextPosition(JLabel.CENTER);
         destinationLabel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -105,7 +103,6 @@ public class RemoveRouteGUI {
         footerLabel.setVerticalTextPosition(JLabel.BOTTOM);
         footerPanel.add(footerLabel);
 
-        frame.add(panel);
         frame.setVisible(true);
 
         addRouteButton.addActionListener(new ActionListener() {

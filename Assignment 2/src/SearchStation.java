@@ -6,19 +6,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class SearchStationGUI {
+public class SearchStation {
+    JFrame frame = new JFrame();
     private JButton findStationButton;    
+    JButton backButton = new JButton("Back to main page");
     JPanel headerPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
+    JPanel centerPanel = new JPanel();
+    JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
     JPanel footerPanel = new JPanel();
+    JLabel headerLabel = new JLabel();
+    JLabel stationLabel = new JLabel();
+    JLabel footerLabel = new JLabel();
     List<Edge> path;
 
-    public SearchStationGUI() {
-
-        JButton backButton = new JButton("Back to main page");
-        JFrame frame = new JFrame();
+    public SearchStation() {
+        
         frame.setResizable(false);
-        JPanel panel = new JPanel();
         frame.setTitle("Bus Route Tracking App");
         String[] station = new String[StartApplication.graph.countVertices()];
 
@@ -38,11 +42,9 @@ public class SearchStationGUI {
         frame.setLayout(new BorderLayout());
         frame.add(headerPanel, BorderLayout.NORTH);
     
-        JPanel centerPanel = new JPanel();
         centerPanel.setPreferredSize(new Dimension(745, 400));
         frame.add(centerPanel, BorderLayout.WEST);
 
-        JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
         bottomPanel.add(buttonPanel);
         bottomPanel.add(footerPanel);
         frame.add(bottomPanel, BorderLayout.SOUTH);
@@ -52,8 +54,6 @@ public class SearchStationGUI {
         buttonPanel.setBackground(new Color(0xBDCDD6));
         footerPanel.setBackground(new Color(0x6096B4));
         
-       
-        JLabel headerLabel = new JLabel();
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -61,7 +61,6 @@ public class SearchStationGUI {
         headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
-        JLabel stationLabel = new JLabel();
         stationLabel.setText("Station:");
         stationLabel.setHorizontalTextPosition(JLabel.CENTER);
         stationLabel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -85,14 +84,12 @@ public class SearchStationGUI {
         backButton.setForeground (new Color (0xcad2c5));
         buttonPanel.add(backButton);
 
-        JLabel footerLabel = new JLabel();
         footerLabel.setText("Prepared by Chu Jun & Zee Ching for CPT212 Assignment 2");
         footerLabel.setFont(new Font("Bradley Hand ITC", Font.BOLD, 18)); //set font
         footerLabel.setHorizontalTextPosition(JLabel.LEFT);
         footerLabel.setVerticalTextPosition(JLabel.BOTTOM);
         footerPanel.add(footerLabel);
 
-        frame.add(panel);
         frame.setVisible(true);
 
         findStationButton.addActionListener(new ActionListener() {

@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddStationGUI {
+public class AddStation {
 
     // Declare variable and components
     JFrame frame = new JFrame();
@@ -15,10 +15,14 @@ public class AddStationGUI {
     JPanel sourcePanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel footerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
+    JLabel headerLabel = new JLabel();
+    JLabel sourceLabel = new JLabel();
+    JLabel footerLabel = new JLabel();
+    JTextField sourceTextField = new JTextField();
+    static JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
     int count = 0;
 
-    public AddStationGUI() {
+    public AddStation() {
 
         // Fix the size and layout of frame
         frame.setResizable(false);
@@ -43,7 +47,6 @@ public class AddStationGUI {
         bottomPanel.add(footerPanel);
 
        // Create header for the application and set its alignment, font and font colour
-        JLabel headerLabel = new JLabel();
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -52,7 +55,6 @@ public class AddStationGUI {
         headerPanel.add(headerLabel);
 
         // Create section of new station for the application and set its properties such as alignment, font and font colour
-        JLabel sourceLabel = new JLabel();
         sourceLabel.setText("New Station:");
         sourceLabel.setHorizontalTextPosition(JLabel.CENTER);
         sourceLabel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -61,7 +63,6 @@ public class AddStationGUI {
         sourceLabel.setVerticalAlignment(JLabel.CENTER);
         sourceLabel.setHorizontalAlignment (JLabel.LEFT);
         sourcePanel.add(sourceLabel);
-        JTextField sourceTextField = new JTextField();
         sourceTextField.setColumns(20);
         sourcePanel.add(sourceTextField);
         sourcePanel.setPreferredSize(new Dimension(745, 400));
@@ -80,7 +81,6 @@ public class AddStationGUI {
         buttonPanel.add(backButton);
 
         // Create footer section for the application and set its properties such as its position, font and font colour
-        JLabel footerLabel = new JLabel();
         footerLabel.setText("Prepared by Chu Jun & Zee Ching for CPT212 Assignment 2");
         footerLabel.setFont(new Font("Bradley Hand ITC", Font.BOLD, 18)); //set font
         footerLabel.setHorizontalTextPosition(JLabel.LEFT);

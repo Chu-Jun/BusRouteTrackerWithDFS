@@ -9,25 +9,28 @@ public class StartApplication extends JFrame {
     public static JFrame frame = new JFrame();
     JButton AdminButton = new JButton("Admin");
     JButton UserButton = new JButton("User");
+    JButton backButton = new JButton("Back to main page");
     JPanel headerPanel = new JPanel();
     JPanel userPanel = new JPanel();
     JPanel adminPanel = new JPanel();
     JPanel footerPanel = new JPanel();
     public static Graph graph = new Graph();
+    JLabel headerLabel = new JLabel();
+    JLabel footerLabel = new JLabel();
 
     public StartApplication() {
         initializeBasicGraph();
         System.out.println(graph.countVertices());
         frame.setTitle("Bus Route Tracking App");
         frame.setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setSize(745, 400);
         frame.setLayout(new BorderLayout());
         frame.add(headerPanel, BorderLayout.NORTH);
+        frame.add(adminPanel, BorderLayout.WEST);
+        frame.add(userPanel, BorderLayout.EAST);
+        frame.add(footerPanel, BorderLayout.SOUTH);
 
-        JLabel headerLabel = new JLabel();
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -36,13 +39,12 @@ public class StartApplication extends JFrame {
         headerPanel.add(headerLabel);
 
 
-        JLabel roleLabel = new JLabel();
-        roleLabel.setText("My Role Is:");
-        roleLabel.setVerticalAlignment (JLabel.CENTER);
-        roleLabel.setHorizontalAlignment(JLabel.RIGHT);
-        roleLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
-        roleLabel.setForeground(new Color(0x2f3e46));
-        headerPanel.add(roleLabel);
+        // roleLabel.setText("My Role Is:");
+        // roleLabel.setVerticalAlignment (JLabel.CENTER);
+        // roleLabel.setHorizontalAlignment(JLabel.RIGHT);
+        // roleLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
+        // roleLabel.setForeground(new Color(0x2f3e46));
+        // headerPanel.add(roleLabel);
 
         AdminButton.setForeground(Color.white);
         AdminButton.setBackground(new Color(0x6096B4));
@@ -58,7 +60,6 @@ public class StartApplication extends JFrame {
         userPanel.setPreferredSize(new Dimension(366, 400));
         userPanel.add(UserButton);
 
-        JLabel footerLabel = new JLabel();
         footerLabel.setText("Prepared by Chu Jun & Zee Ching for CPT212 Assignment 2");
         footerLabel.setFont(new Font("Bradley Hand ITC", Font.BOLD, 18)); //set font
         footerLabel.setHorizontalTextPosition(JLabel.LEFT);
@@ -76,14 +77,12 @@ public class StartApplication extends JFrame {
 
         AdminButton.addActionListener(click1);
         UserButton.addActionListener(click2);
-        
-        frame.add(adminPanel, BorderLayout.WEST);
-        frame.add(userPanel, BorderLayout.EAST);
-        frame.add(footerPanel, BorderLayout.SOUTH);
+
+        backButton.setFont(new Font("Arial", Font.BOLD,15));
+        backButton.setBackground (new Color (0x6096B4));
+        backButton.setForeground (new Color (0xcad2c5));
         
         frame.setVisible(true);
-
-        
     }
 
     private class ClickListener implements ActionListener
@@ -100,9 +99,9 @@ public class StartApplication extends JFrame {
                 frame.setVisible(false);
                 new UserPage();
             }          
-
         }
     }
+    
 
 
     public void initializeBasicGraph(){

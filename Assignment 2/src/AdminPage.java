@@ -126,18 +126,18 @@ public class AdminPage extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             // If user press on the addRouteButton
-             if(e.getSource() == addRouteButton){
+            if(e.getSource() == addRouteButton){
                 // Dispose current frame
                 frame.dispose();
                 // Start the AddRouteGUI 
-                new AddRouteGUI();
+                new AddRoute();
             }
             // If user press on the addStationButton
             else if(e.getSource() == addStationButton){
                 // Dispose current frame
                 frame.dispose();
                 // Start the AddStationGUI 
-                new AddStationGUI();
+                new AddStation();
                 
             }
             // If user press on the removeRouteButton
@@ -145,14 +145,14 @@ public class AdminPage extends JFrame {
                 // Dispose current frame
                 frame.dispose();
                 // Start the RemoveRouteGUI 
-                new RemoveRouteGUI();
+                new RemoveRoute();
             }
             // If user press on the removeStationButton
             else if(e.getSource() == removeStationButton){
                 // Dispose current frame
                 frame.dispose();
                 // Start the RemoveRouteGUI 
-                new RemoveStationGUI();
+                new RemoveStation();
             }
             // If user press on the backButton
             else if(e.getSource() == backButton){

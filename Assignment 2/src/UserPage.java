@@ -11,10 +11,13 @@ public class UserPage extends JFrame {
     public static JFrame frame = new JFrame();
     JButton searchRouteButton = new JButton("Search Route");
     JButton searchStationButton = new JButton("Search Station");
-    JButton backButton = new JButton("Back to main page");
+    static JButton backButton = new JButton("Back to main page");
+    JPanel buttons = new JPanel(new GridBagLayout());
     JPanel headerPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel footerPanel = new JPanel();
+    JLabel headerLabel = new JLabel();
+    JLabel footerLabel = new JLabel();
 
     public UserPage() {
 
@@ -34,7 +37,6 @@ public class UserPage extends JFrame {
         footerPanel.setBackground(new Color(0x6096B4));
 
         // Create header section for the application and set its alignment, font and font colour
-        JLabel headerLabel = new JLabel();
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -50,7 +52,6 @@ public class UserPage extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Declare the buttons panel and set its layout
-        JPanel buttons = new JPanel(new GridBagLayout());
         buttons.add(searchStationButton, gbc);
         buttons.add(searchRouteButton, gbc);
         buttons.add(backButton, gbc);
@@ -79,7 +80,6 @@ public class UserPage extends JFrame {
         buttonPanel.setPreferredSize(new Dimension(745, 400));
 
         // Create footer section for the application and set its properties such as its position, font and font colour
-        JLabel footerLabel = new JLabel();
         footerLabel.setText("Prepared by Chu Jun & Zee Ching for CPT212 Assignment 2");
         footerLabel.setFont(new Font("Bradley Hand ITC", Font.BOLD, 18)); //set font
         footerLabel.setHorizontalTextPosition(JLabel.LEFT);
@@ -88,14 +88,12 @@ public class UserPage extends JFrame {
         frame.add(footerPanel, BorderLayout.SOUTH);
 
         // Declare the ClickListener for the button
-        ClickListener click1 = new ClickListener();
-        ClickListener click2 = new ClickListener();
-        ClickListener click3 = new ClickListener();
+        ClickListener click = new ClickListener();
 
         // Set the addActionListener for each button
-        searchRouteButton.addActionListener(click1);
-        searchStationButton.addActionListener(click2);
-        backButton.addActionListener(click3);
+        searchRouteButton.addActionListener(click);
+        searchStationButton.addActionListener(click);
+        backButton.addActionListener(click);
         
         // Set the frame visibility to true
         frame.setVisible(true);
@@ -110,14 +108,14 @@ public class UserPage extends JFrame {
                  // Dispose current frame
                 frame.dispose();
                 // Start the SearchRouteGUI
-                new SearchRouteGUI();
+                new SearchRoute();
             }
             // If user press on the searchStationButton
             else if(e.getSource() == searchStationButton){
                 // Dispose current frame
                 frame.dispose();
                 // Start the SearchStationGUI
-                new SearchStationGUI();
+                new SearchStation();
                 
             } 
             // If user press on the backButton
