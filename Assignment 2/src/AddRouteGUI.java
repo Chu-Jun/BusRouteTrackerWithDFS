@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 // AddRouteGUI that provide admin interface to add new route("edges") to the bus transportation network ("graph")
-public class AddRouteGUI {
+public class AddRouteGUI{
 
     // Declare variable and components
     JFrame frame = new JFrame();

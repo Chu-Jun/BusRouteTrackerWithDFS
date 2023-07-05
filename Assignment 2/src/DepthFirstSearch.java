@@ -8,7 +8,7 @@ public class DepthFirstSearch {
     private int[] num;
     public List<Edge> edges;
     boolean found = false;
-    int i;
+    int i=0;
 
     public List<Edge> findPathDFS(Vertex v, Vertex d) {
         int numVertices = StartApplication.graph.countVertices();
@@ -20,7 +20,7 @@ public class DepthFirstSearch {
         for (int j = 0; j < numVertices; j++) {
             num[j] = 0;
         }
-        i=0;
+        
 
         // while(v!=d && hasUnexploredVertex()){
         //     DFS(v, d);
@@ -37,8 +37,8 @@ public class DepthFirstSearch {
         //     return null; // No path from v to d
         // }
         if (edges.size()!=0) {
-            for(int i=0; i<edges.size(); i++){
-                System.out.println("!!!" + edges.get(i));
+            for(int j=0; j<edges.size(); j++){
+                System.out.println("!!!" + edges.get(j));
             }
             return edges; // Path from v to d exists
         } else {
@@ -46,16 +46,16 @@ public class DepthFirstSearch {
         }
     }
 
-    private boolean hasUnexploredVertex() {
-        for (int j = 0; j < num.length; j++) {
-            if (num[j] == 0) {
-                return true;
-            }
-        }
-        return false;
-    }
+    // private boolean hasUnexploredVertex() {
+    //     for (int j = 0; j < num.length; j++) {
+    //         if (num[j] == 0) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
-    private void DFS(Vertex v, Vertex d) {
+    private boolean DFS(Vertex v, Vertex d) {
         num[v.getIndex()] = i++;
         // if (v != d) {
 
@@ -87,21 +87,38 @@ public class DepthFirstSearch {
             
         // }
 
+        if (v == d) {
+            return true;
+        }
         Vertex u;
         for (Edge e : v.getAdjacentEdges()) {
             u = e.getDestination();
             if(num[u.getIndex()] == 0 && v!=d){
-                
-                
-                if(v==d){
-                    return;
-                }
-                v = u;
                 edges.add(e);
-                DFS(u,d);
+                boolean pathFound = DFS(u,d);
+                if(pathFound){
+                    return true;
+                }else{
+                    edges.remove(edges.size()-1);
+                }
+                
             }
         }
+        return false;
         //return u;
-        return;
+        // return;
+        
+
+        // for (int adjacentVertex : adjacencyList[vertex]) {
+        //     if (num[adjacentVertex] == 0 && vertex != destination) {
+        //         edges.add(adjacentVertex);
+        //         boolean pathFound = dfs(adjacentVertex, destination, num, edges, i);
+        //         if (pathFound) {
+        //             return true;
+        //         } else {
+        //             edges.removeLast();
+        //         }
+        //     }
+        // }
     }   
 }
