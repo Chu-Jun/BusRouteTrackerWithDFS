@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.io.IOException;
 
 public class StartApplication extends JFrame {
     public static JFrame frame = new JFrame();
@@ -18,7 +23,7 @@ public class StartApplication extends JFrame {
     JLabel headerLabel = new JLabel();
     JLabel footerLabel = new JLabel();
 
-    public StartApplication() {
+    public StartApplication() throws IOException {
         initializeBasicGraph();
         System.out.println(graph.countVertices());
         frame.setTitle("Bus Route Tracking App");
@@ -37,14 +42,6 @@ public class StartApplication extends JFrame {
         headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
         headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
-
-
-        // roleLabel.setText("My Role Is:");
-        // roleLabel.setVerticalAlignment (JLabel.CENTER);
-        // roleLabel.setHorizontalAlignment(JLabel.RIGHT);
-        // roleLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
-        // roleLabel.setForeground(new Color(0x2f3e46));
-        // headerPanel.add(roleLabel);
 
         AdminButton.setForeground(Color.white);
         AdminButton.setBackground(new Color(0x6096B4));
@@ -104,45 +101,102 @@ public class StartApplication extends JFrame {
     
 
 
-    public void initializeBasicGraph(){
-        // Create vertices
-        Vertex gelugor = new Vertex(0, "Gelugor");
-        Vertex bayanLepas = new Vertex(1, "Bayan Lepas");
-        Vertex bayanBaru = new Vertex(2, "Bayan Baru");
-        Vertex USM = new Vertex(3, "USM");
-        Vertex Georgetown = new Vertex(4, "Georgetown");
+    // public void initializeBasicGraph(){
+    //     // Create vertices
+    //     Vertex gelugor = new Vertex(0, "Gelugor");
+    //     Vertex bayanLepas = new Vertex(1, "Bayan Lepas");
+    //     Vertex bayanBaru = new Vertex(2, "Bayan Baru");
+    //     Vertex USM = new Vertex(3, "USM");
+    //     Vertex Georgetown = new Vertex(4, "Georgetown");
 
-        // Add vertices to the graph
-        graph.addVertex(gelugor);
-        graph.addVertex(bayanLepas);
-        graph.addVertex(bayanBaru);
-        graph.addVertex(USM);
-        graph.addVertex(Georgetown);
+    //     // Add vertices to the graph
+    //     graph.addVertex(gelugor);
+    //     graph.addVertex(bayanLepas);
+    //     graph.addVertex(bayanBaru);
+    //     graph.addVertex(USM);
+    //     graph.addVertex(Georgetown);
 
         
-        // Create edges
-        Edge e1 = new Edge(gelugor, bayanLepas);
-        Edge e2 = new Edge(bayanLepas, bayanBaru);
-        Edge e3 = new Edge(gelugor, bayanBaru);
-        Edge e4 = new Edge(bayanBaru, Georgetown);
-        Edge e5 = new Edge(gelugor, USM);
-        Edge e6 = new Edge(USM, Georgetown);
+    //     // Create edges
+    //     Edge e1 = new Edge(gelugor, bayanLepas, 1.00);
+    //     Edge e2 = new Edge(bayanLepas, bayanBaru, 2.00);
+    //     Edge e3 = new Edge(gelugor, bayanBaru, 1.80);
+    //     Edge e4 = new Edge(bayanBaru, Georgetown, 2.00);
+    //     Edge e5 = new Edge(gelugor, USM, 1.60);
+    //     Edge e6 = new Edge(USM, Georgetown, 2.40);
 
-        // Add edges to the vertices
-        USM.addAdjacentEdge(e6);
-        gelugor.addAdjacentEdge(e1);
-        bayanLepas.addAdjacentEdge(e2);
-        gelugor.addAdjacentEdge(e3);
-        bayanBaru.addAdjacentEdge(e4);
-        gelugor.addAdjacentEdge(e5);
+    //     // Add edges to the vertices
+    //     USM.addAdjacentEdge(e6);
+    //     gelugor.addAdjacentEdge(e1);
+    //     bayanLepas.addAdjacentEdge(e2);
+    //     gelugor.addAdjacentEdge(e3);
+    //     bayanBaru.addAdjacentEdge(e4);
+    //     gelugor.addAdjacentEdge(e5);
+    // }
+
+
+    public void initializeBasicGraph() throws IOException{
+        Scanner scan = new Scanner(new FileReader("Bus_Route.txt"));
+        List<Vertex> stationSaved = StartApplication.graph.getVertices();
+        Vertex temp1 = null, temp2 = null;
+        int numOfStation=0, counter=0;
+        boolean foundSource = false, foundDestination=false;
+        List<Edge> edgeList = new ArrayList<Edge>();
+
+        while(scan.hasNext()){
+            String curLine = scan.nextLine();
+            String[] splitted = curLine.split("\t");
+            for(int i=0; i<splitted.length; i++){
+                System.out.println(i + " " + splitted[i]);
+            }
+            String sourceStation = splitted[0].trim();
+            String destinationStation = splitted[1].trim();
+            String busFare = splitted[2];
+            double fee = Double.parseDouble(busFare);
+
+            for(int i=0; i<stationSaved.size(); i++){
+                if(sourceStation.equals(stationSaved.get(i).getStationName(0))){
+                    temp1 = stationSaved.get(i);
+                    foundSource = true;
+                }
+                if(destinationStation.equals(stationSaved.get(i).getStationName(0))){
+                    temp2 = stationSaved.get(i);
+                    foundDestination = true;
+                }
+            }
+            if(foundSource == false){
+                Vertex newStation = new Vertex(numOfStation, sourceStation);
+                graph.addVertex(newStation);
+                temp1 = newStation;
+            }
+            if(foundDestination == false){
+                Vertex newDestination = new Vertex(numOfStation, destinationStation);
+                graph.addVertex(newDestination);
+                temp2 = newDestination;
+            }
+            edgeList.add(new Edge(temp1, temp2, fee));
+            System.out.println("!!!!!!!" + fee);
+            temp1.addAdjacentEdge(edgeList.get(counter));
+            
+            System.out.println(edgeList.get(counter));
+            System.out.println("%%%%%5" + temp1.getAdjacentEdges() + "%%%%%");
+            counter++;
+            foundSource = foundDestination = false;
+            temp1 = temp2 = null;
+
+        }
     }
-
 
     
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new StartApplication();
+                try {
+                    new StartApplication();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("File not found");
+                }
             }
         });
     }

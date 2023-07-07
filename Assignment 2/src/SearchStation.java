@@ -13,7 +13,7 @@ public class SearchStation {
     JPanel headerPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel centerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
+    JPanel bottomPanel = new JPanel(new GridLayout(2, 1));
     JPanel footerPanel = new JPanel();
     JLabel headerLabel = new JLabel();
     JLabel stationLabel = new JLabel();

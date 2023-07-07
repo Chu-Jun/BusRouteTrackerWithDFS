@@ -14,13 +14,18 @@ public class AddRoute{
     JButton addRouteButton;    
     JButton backButton = new JButton("Back to main page");
     JPanel headerPanel = new JPanel();
-    JPanel sourcePanel = new JPanel();
+    JPanel sourcePanel = new JPanel(new GridLayout(2, 1));
     JPanel destinationPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel footerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
+    JPanel bottomPanel = new JPanel(new GridLayout(2, 1));
     final JComboBox<String> stationList;
     final JComboBox<String> destinationList;
+    JLabel headerLabel = new JLabel();
+    JLabel sourceLabel = new JLabel();
+    JLabel destinationLabel = new JLabel();
+    JLabel fareLabel = new JLabel();
+    JTextField fareTextField = new JTextField();
 
     public AddRoute() {
 
@@ -64,7 +69,6 @@ public class AddRoute{
         bottomPanel.add(footerPanel);
 
         // Create header for the application and set its alignment, font and font colour
-        JLabel headerLabel = new JLabel();
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -73,7 +77,6 @@ public class AddRoute{
         headerPanel.add(headerLabel);
 
         // Create section of source station for the application and set its properties such as alignment, font and font colour
-        JLabel sourceLabel = new JLabel();
         sourceLabel.setText("Source Stop:");
         sourceLabel.setHorizontalTextPosition(JLabel.CENTER);
         sourceLabel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -81,13 +84,31 @@ public class AddRoute{
         sourceLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20)); //set font
         sourceLabel.setVerticalAlignment(JLabel.CENTER);
         sourceLabel.setHorizontalAlignment (JLabel.LEFT);
-        sourcePanel.add(sourceLabel);
+        JPanel temp = new JPanel();
+        temp.setBackground(new Color(0xBDCDD6));
+        temp.add(sourceLabel);
 
         stationList.setPrototypeDisplayValue("Select station that you prefer:  ");
-        sourcePanel.add(stationList);
+        temp.add(stationList);
+        
+
+        fareLabel.setText("Bus Fare:   ");
+        fareLabel.setHorizontalTextPosition(JLabel.CENTER);
+        fareLabel.setVerticalTextPosition(JLabel.BOTTOM);
+        fareLabel.setForeground(new Color(0x2f3e46)); //set font color
+        fareLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20)); //set font
+        fareLabel.setVerticalAlignment(JLabel.CENTER);
+        fareLabel.setHorizontalAlignment (JLabel.LEFT);
+        JPanel temp2 = new JPanel();
+        temp2.setBackground(new Color(0xBDCDD6));
+        fareTextField.setColumns(20);
+        temp2.add(fareLabel);
+        temp2.add(fareTextField);
+
+        sourcePanel.add(temp);
+        sourcePanel.add(temp2);
 
         // Create section of destination station for the application and set properties such as its alignment, font and font colour
-        JLabel destinationLabel = new JLabel();
         destinationLabel.setText("Destination Stop:");
         destinationLabel.setHorizontalTextPosition(JLabel.CENTER);
         destinationLabel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -132,6 +153,7 @@ public class AddRoute{
                 // Get the station name from the dropdown list
                 String sourceStop = String.valueOf(stationList.getSelectedItem());
                 String destinationStop = String.valueOf(destinationList.getSelectedItem());
+                double fare = Double.parseDouble(fareTextField.getText());
 
                 // Declare and initialize the vertex variable
                 Vertex sourceVertex = list.get(0), destinationVertex = list.get(0);
@@ -146,7 +168,7 @@ public class AddRoute{
                 }
 
                 // Create new edge for the source and destination vertex
-                Edge e1 = new Edge(sourceVertex, destinationVertex);
+                Edge e1 = new Edge(sourceVertex, destinationVertex, fare);
 
                 // Add the edge to the source vertex's adjacent edges list
                 sourceVertex.addAdjacentEdge(e1);

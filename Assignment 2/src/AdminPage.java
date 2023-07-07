@@ -16,7 +16,6 @@ public class AdminPage extends JFrame {
     JButton backButton = new JButton("Back to main page");
     JPanel headerPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
-    JPanel footerPanel = new JPanel();
 
     public AdminPage() {
 
@@ -27,14 +26,10 @@ public class AdminPage extends JFrame {
         frame.setLayout(new BorderLayout());
         frame.add(headerPanel, BorderLayout.NORTH);
         frame.add(buttonPanel, BorderLayout.WEST);
-        frame.add(footerPanel, BorderLayout.SOUTH);
-        // setLocationRelativeTo(null);
-        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set the background colour of the panel
         headerPanel.setBackground(new Color(0x6096B4));
         buttonPanel.setBackground(new Color(0xBDCDD6));
-        footerPanel.setBackground(new Color(0x6096B4));
 
         // Create header section for the application and set its alignment, font and font colour
         JLabel headerLabel = new JLabel();
@@ -94,14 +89,6 @@ public class AdminPage extends JFrame {
         // add buttons panel to the buttonPanel and set the size of buttonPanel
         buttonPanel.add(buttons);
         buttonPanel.setPreferredSize(new Dimension(745, 400));
-
-        // Create footer section for the application and set its properties such as its position, font and font colour
-        JLabel footerLabel = new JLabel();
-        footerLabel.setText("Prepared by Chu Jun & Zee Ching for CPT212 Assignment 2");
-        footerLabel.setFont(new Font("Bradley Hand ITC", Font.BOLD, 18)); //set font
-        footerLabel.setHorizontalTextPosition(JLabel.LEFT);
-        footerLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        footerPanel.add(footerLabel);
         
         // Declare the ClickListener for the button
         ClickListener click1 = new ClickListener();

@@ -21,6 +21,7 @@ public class DepthFirstSearch {
             num[j] = 0;
         }
 
+        
         DFS(v, d);
         
         if (edges.size()!=0) {
@@ -35,8 +36,9 @@ public class DepthFirstSearch {
 
     private boolean DFS(Vertex v, Vertex d) {
         num[v.getIndex()] = i++;
-
+        System.out.println("searching");
         if (v == d) {
+            System.out.println("sameeee");
             return true;
         }
         Vertex u;
@@ -44,13 +46,14 @@ public class DepthFirstSearch {
             u = e.getDestination();
             if(num[u.getIndex()] == 0 && v!=d){
                 edges.add(e);
+                System.out.println("One edge");
                 boolean pathFound = DFS(u,d);
                 if(pathFound){
+                    System.out.println("Return true");
                     return true;
                 }else{
                     edges.remove(edges.size()-1);
                 }
-                
             }
         }
         return false;

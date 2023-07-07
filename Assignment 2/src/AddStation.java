@@ -14,12 +14,10 @@ public class AddStation {
     JPanel headerPanel = new JPanel();
     JPanel sourcePanel = new JPanel();
     JPanel buttonPanel = new JPanel();
-    JPanel footerPanel = new JPanel();
     JLabel headerLabel = new JLabel();
     JLabel sourceLabel = new JLabel();
-    JLabel footerLabel = new JLabel();
     JTextField sourceTextField = new JTextField();
-    static JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
+    static JPanel bottomPanel = new JPanel(new GridLayout(2, 1));
     int count = 0;
 
     public AddStation() {
@@ -40,11 +38,9 @@ public class AddStation {
         headerPanel.setBackground(new Color(0x6096B4));
         sourcePanel.setBackground(new Color(0xBDCDD6));
         buttonPanel.setBackground(new Color(0xBDCDD6));
-        footerPanel.setBackground(new Color(0x6096B4));
         
         // Add the buttonPanel and footerPanel to the bottomPanel
         bottomPanel.add(buttonPanel);
-        bottomPanel.add(footerPanel);
 
        // Create header for the application and set its alignment, font and font colour
         headerLabel.setText("Bus Route Tracking Application");
@@ -79,13 +75,6 @@ public class AddStation {
         backButton.setBackground (new Color (0x6096B4));
         backButton.setForeground (new Color (0xcad2c5));
         buttonPanel.add(backButton);
-
-        // Create footer section for the application and set its properties such as its position, font and font colour
-        footerLabel.setText("Prepared by Chu Jun & Zee Ching for CPT212 Assignment 2");
-        footerLabel.setFont(new Font("Bradley Hand ITC", Font.BOLD, 18)); //set font
-        footerLabel.setHorizontalTextPosition(JLabel.LEFT);
-        footerLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        footerPanel.add(footerLabel);
 
         // Set the frame visibility to true
         frame.setVisible(true);

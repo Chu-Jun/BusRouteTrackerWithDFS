@@ -14,7 +14,7 @@ public class RemoveStation {
     JPanel sourcePanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel footerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
+    JPanel bottomPanel = new JPanel(new GridLayout(2, 1));
     JLabel headerLabel = new JLabel();
     JLabel sourceLabel = new JLabel();
     JLabel footerLabel = new JLabel();

@@ -13,8 +13,7 @@ public class RemoveRoute {
     JPanel sourcePanel = new JPanel();
     JPanel destinationPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
-    JPanel footerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
+    JPanel bottomPanel = new JPanel(new GridLayout(2, 1));
     JLabel headerLabel = new JLabel();
     JLabel sourceLabel = new JLabel();
     JLabel destinationLabel = new JLabel();
@@ -45,14 +44,12 @@ public class RemoveRoute {
         frame.add(destinationPanel, BorderLayout.EAST);
 
         bottomPanel.add(buttonPanel);
-        bottomPanel.add(footerPanel);
-        frame.add(bottomPanel, BorderLayout.SOUTH);
+        frame.add(buttonPanel, BorderLayout.SOUTH);
 
         headerPanel.setBackground(new Color(0x6096B4));
         sourcePanel.setBackground(new Color(0xBDCDD6));
         destinationPanel.setBackground(new Color(0xBDCDD6));
         buttonPanel.setBackground(new Color(0xBDCDD6));
-        footerPanel.setBackground(new Color(0x6096B4));
         
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
@@ -95,13 +92,6 @@ public class RemoveRoute {
         backButton.setBackground (new Color (0x6096B4));
         backButton.setForeground (new Color (0xcad2c5));
         buttonPanel.add(backButton);
-
-        JLabel footerLabel = new JLabel();
-        footerLabel.setText("Prepared by Chu Jun & Zee Ching for CPT212 Assignment 2");
-        footerLabel.setFont(new Font("Bradley Hand ITC", Font.BOLD, 18)); //set font
-        footerLabel.setHorizontalTextPosition(JLabel.LEFT);
-        footerLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        footerPanel.add(footerLabel);
 
         frame.setVisible(true);
 

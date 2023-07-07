@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.text.DecimalFormat;
 
 public class SearchRoute {
     JFrame frame = new JFrame();
@@ -15,7 +16,7 @@ public class SearchRoute {
     JPanel destinationPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel footerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
+    JPanel bottomPanel = new JPanel(new GridLayout(2, 1));
     JLabel headerLabel = new JLabel();
     JLabel sourceLabel = new JLabel();
     JLabel destinationLabel = new JLabel();
@@ -112,6 +113,7 @@ public class SearchRoute {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DepthFirstSearch searchObj = new DepthFirstSearch();
+                DecimalFormat df = new DecimalFormat("0.00");
                 searchObj.edges = null;
                 
                 String sourceStop = String.valueOf(stationList.getSelectedItem());
@@ -128,11 +130,21 @@ public class SearchRoute {
                 }
 
                 path = searchObj.findPathDFS(sourceVertex, destinationVertex);
+                // if(path == null){
+                //     String message = "Route from " + sourceStop + " to " + destinationStop + " is not available";
+                //     JOptionPane.showMessageDialog(null,
+                //         message,
+                //         "Route Not Found",
+                //         JOptionPane.INFORMATION_MESSAGE);
+                //         return;
+                // }
                 String[] stationInPath = new String[path.size()];
+                double busFare=0.00;
 
                 for(int i=0; i<path.size(); i++){
                     Edge temp = path.get(i);
                     Vertex vtemp = temp.getDestination();
+                    busFare += temp.getFare();
                     stationInPath[i] = vtemp.getStationName(0);
                 }
 
@@ -142,6 +154,8 @@ public class SearchRoute {
                 for(int i=0; i<stationInPath.length; i++){
                     message += stationInPath[i] + "\n";
                 }
+
+                message += "\nThe bus fare is RM " + df.format(busFare);
 
                 JOptionPane.showMessageDialog(null,
                         message,
