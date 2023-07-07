@@ -130,14 +130,14 @@ public class SearchRoute {
                 }
 
                 path = searchObj.findPathDFS(sourceVertex, destinationVertex);
-                // if(path == null){
-                //     String message = "Route from " + sourceStop + " to " + destinationStop + " is not available";
-                //     JOptionPane.showMessageDialog(null,
-                //         message,
-                //         "Route Not Found",
-                //         JOptionPane.INFORMATION_MESSAGE);
-                //         return;
-                // }
+                if(path == null){
+                    String message = "Route from " + sourceStop + " to " + destinationStop + " is not available";
+                    JOptionPane.showMessageDialog(null,
+                        message,
+                        "Route Not Found",
+                        JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                }
                 String[] stationInPath = new String[path.size()];
                 double busFare=0.00;
 
