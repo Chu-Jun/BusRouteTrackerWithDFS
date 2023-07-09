@@ -168,11 +168,13 @@ public class StartApplication extends JFrame {
                 Vertex newStation = new Vertex(numOfStation, sourceStation);
                 graph.addVertex(newStation);
                 temp1 = newStation;
+                numOfStation++;
             }
             if(foundDestination == false){
                 Vertex newDestination = new Vertex(numOfStation, destinationStation);
                 graph.addVertex(newDestination);
                 temp2 = newDestination;
+                numOfStation++;
             }
             edgeList.add(new Edge(temp1, temp2, fee));
             System.out.println("!!!!!!!" + fee);
