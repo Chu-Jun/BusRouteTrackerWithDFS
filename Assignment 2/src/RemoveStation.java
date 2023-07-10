@@ -58,7 +58,7 @@ public class RemoveStation {
         headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
-        sourceLabel.setText("New Station:");
+        sourceLabel.setText("Station:");
         sourceLabel.setHorizontalTextPosition(JLabel.CENTER);
         sourceLabel.setVerticalTextPosition(JLabel.BOTTOM);
         sourceLabel.setForeground(new Color(0x2f3e46)); //set font color

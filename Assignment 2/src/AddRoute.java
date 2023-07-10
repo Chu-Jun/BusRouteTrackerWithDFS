@@ -155,30 +155,37 @@ public class AddRoute{
                 String destinationStop = String.valueOf(destinationList.getSelectedItem());
                 double fare = Double.parseDouble(fareTextField.getText());
 
-                // Declare and initialize the vertex variable
-                Vertex sourceVertex = list.get(0), destinationVertex = list.get(0);
-
-                // Get the source and destination vertex by comparing the station name using for loop
-                for(int i=1; i<station.length; i++){
-                    if(sourceStop == station[i]){
-                        sourceVertex = list.get(i);
-                    }if(destinationStop == station[i]){
-                        destinationVertex = list.get(i);
-                    }
-                }
-
-                // Create new edge for the source and destination vertex
-                Edge e1 = new Edge(sourceVertex, destinationVertex, fare);
-
-                // Add the edge to the source vertex's adjacent edges list
-                sourceVertex.addAdjacentEdge(e1);
-                //destinationVertex.addAdjacentEdge(e1);
-
-                // Show message to notify user that the route is added
-                JOptionPane.showMessageDialog(null,
-                        "Route from " + sourceStop + " to " + destinationStop + " is successfully added!",
-                        "Route added",
+                if(fare<=0){
+                    JOptionPane.showMessageDialog(null,
+                        "Fare is invalid. Please enter value more than 0.",
+                        "Fare invalid!",
                         JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    // Declare and initialize the vertex variable
+                    Vertex sourceVertex = list.get(0), destinationVertex = list.get(0);
+
+                    // Get the source and destination vertex by comparing the station name using for loop
+                    for(int i=1; i<station.length; i++){
+                        if(sourceStop == station[i]){
+                            sourceVertex = list.get(i);
+                        }if(destinationStop == station[i]){
+                            destinationVertex = list.get(i);
+                        }
+                    }
+
+                    // Create new edge for the source and destination vertex
+                    Edge e1 = new Edge(sourceVertex, destinationVertex, fare);
+
+                    // Add the edge to the source vertex's adjacent edges list
+                    sourceVertex.addAdjacentEdge(e1);
+                    //destinationVertex.addAdjacentEdge(e1);
+
+                    // Show message to notify user that the route is added
+                    JOptionPane.showMessageDialog(null,
+                            "Route from " + sourceStop + " to " + destinationStop + " is successfully added!",
+                            "Route added",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
 
