@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+
 public class SearchStation {
     JFrame frame = new JFrame();
     private JButton findStationButton;    
@@ -45,7 +46,7 @@ public class SearchStation {
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
-        headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
+        headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 37));
         headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
@@ -82,8 +83,6 @@ public class SearchStation {
         findStationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DepthFirstSearch searchObj = new DepthFirstSearch();
-                searchObj.edges = null;
                 
                 String Station = stationTextField.getText();
 
@@ -93,7 +92,6 @@ public class SearchStation {
                 for(int i=0; i<list.size(); i++){
                     Vertex temp = list.get(i);
                     String tempStation = temp.getStationName(0);
-                    System.out.println(tempStation + " + " + Station);
                     int results = tempStation.compareToIgnoreCase(Station);
                     if(results==0){
                         JOptionPane.showMessageDialog(null,

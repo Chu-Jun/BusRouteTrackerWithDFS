@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class AddStation {
 
@@ -96,20 +97,40 @@ public class AddStation {
             public void actionPerformed(ActionEvent e) {
 
                 // Get the name of the new station from the text field in the source station section
-                String sourceStop = sourceTextField.getText();
+                String Station = sourceTextField.getText();
 
-                // Create new vertex with the obtained station name
-                Vertex newVertex = new Vertex(count, sourceStop);
-                count++;
+                // Get list of vertex available to check if the station already exists
+                List<Vertex> list = StartApplication.graph.getVertices();
+                Boolean found = false;
 
-                // Add the vertex to the graph
-                StartApplication.graph.addVertex(newVertex);
-
-                // Show message to notify user that the station has been added
-                JOptionPane.showMessageDialog(null,
-                        "Station " + sourceStop + " is successfully added!",
-                        "Station added",
+                // Use for loop to check the whether the station already exists
+                for(int i=0; i<list.size(); i++){
+                    Vertex temp = list.get(i);
+                    String tempStation = temp.getStationName(0);
+                    System.out.println(tempStation + " + " + Station);
+                    int results = tempStation.compareToIgnoreCase(Station);
+                    if(results==0){
+                        JOptionPane.showMessageDialog(null,
+                        "The station already exists!",
+                        "Add station failed",
                         JOptionPane.INFORMATION_MESSAGE);
+                        found = true;
+                    }
+                }
+                if(!found){
+                    // Create new vertex with the obtained station name
+                    Vertex newVertex = new Vertex(count, Station);
+                    count++;
+
+                    // Add the vertex to the graph
+                    StartApplication.graph.addVertex(newVertex);
+
+                    // Show message to notify user that the station has been added
+                    JOptionPane.showMessageDialog(null,
+                            "Station " + Station + " is successfully added!",
+                            "Station added",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    }
             }
         });
 
