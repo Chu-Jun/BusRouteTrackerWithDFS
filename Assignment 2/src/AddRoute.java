@@ -72,7 +72,7 @@ public class AddRoute{
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
-        headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
+        headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 37));
         headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
@@ -161,6 +161,8 @@ public class AddRoute{
                         "Fare invalid!",
                         JOptionPane.INFORMATION_MESSAGE);
                 }else{
+
+                    
                     // Declare and initialize the vertex variable
                     Vertex sourceVertex = list.get(0), destinationVertex = list.get(0);
 
@@ -173,18 +175,33 @@ public class AddRoute{
                         }
                     }
 
-                    // Create new edge for the source and destination vertex
-                    Edge e1 = new Edge(sourceVertex, destinationVertex, fare);
+                    // Declare and initialize variable
+                    List<Edge> edgeList = sourceVertex.getAdjacentEdges();
 
-                    // Add the edge to the source vertex's adjacent edges list
-                    sourceVertex.addAdjacentEdge(e1);
-                    //destinationVertex.addAdjacentEdge(e1);
+                    // Use for loop to find the edge between the two vertex
+                    for(int i=0; i<edgeList.size(); i++){
+                        // If the edge exist
+                        if(edgeList.get(i).getDestination()==destinationVertex){
+                            JOptionPane.showMessageDialog(null,
+                                    "Route from " + sourceStop + " to " + destinationStop + " already exists!",
+                                    "Fail to add the route",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                                    break;
+                        }else{
+                            // Create new edge for the source and destination vertex
+                            Edge e1 = new Edge(sourceVertex, destinationVertex, fare);
 
-                    // Show message to notify user that the route is added
-                    JOptionPane.showMessageDialog(null,
-                            "Route from " + sourceStop + " to " + destinationStop + " is successfully added!",
-                            "Route added",
-                            JOptionPane.INFORMATION_MESSAGE);
+                            // Add the edge to the source vertex's adjacent edges list
+                            sourceVertex.addAdjacentEdge(e1);
+                            //destinationVertex.addAdjacentEdge(e1);
+
+                            // Show message to notify user that the route is added
+                            JOptionPane.showMessageDialog(null,
+                                    "Route from " + sourceStop + " to " + destinationStop + " is successfully added!",
+                                    "Route added",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
                 }
             }
         });

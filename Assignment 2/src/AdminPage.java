@@ -36,7 +36,7 @@ public class AdminPage extends JFrame {
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
-        headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
+        headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 37));
         headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 

@@ -50,7 +50,7 @@ public class AddStation {
         headerLabel.setText("Bus Route Tracking Application");
         headerLabel.setVerticalAlignment (JLabel.CENTER);
         headerLabel.setHorizontalAlignment(JLabel.RIGHT);
-        headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 40));
+        headerLabel.setFont(new Font("Bowlby One SC", Font.BOLD, 37));
         headerLabel.setForeground(new Color(0xEEE9DA));
         headerPanel.add(headerLabel);
 
@@ -109,6 +109,8 @@ public class AddStation {
                     String tempStation = temp.getStationName(0);
                     System.out.println(tempStation + " + " + Station);
                     int results = tempStation.compareToIgnoreCase(Station);
+
+                    // If the station already exists, prompt user and does not add new vertex
                     if(results==0){
                         JOptionPane.showMessageDialog(null,
                         "The station already exists!",
@@ -117,6 +119,7 @@ public class AddStation {
                         found = true;
                     }
                 }
+                // If the station not exist, add new station
                 if(!found){
                     // Create new vertex with the obtained station name
                     Vertex newVertex = new Vertex(count, Station);
