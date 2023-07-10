@@ -22,6 +22,7 @@ public class Edge {
         return destination;
     }
 
+    // Get the fare for the selected edge
     public double getFare(){
         return fare;
     }

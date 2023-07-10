@@ -18,25 +18,13 @@ public class SearchStation {
     JLabel headerLabel = new JLabel();
     JLabel stationLabel = new JLabel();
     JLabel footerLabel = new JLabel();
+    JTextField stationTextField = new JTextField();
     List<Edge> path;
 
     public SearchStation() {
         
         frame.setResizable(false);
         frame.setTitle("Bus Route Tracking App");
-        String[] station = new String[StartApplication.graph.countVertices()];
-
-        System.out.println(StartApplication.graph.countVertices());
-
-
-        List<Vertex> list= StartApplication.graph.getVertices();
-        for(int i=0; i<StartApplication.graph.countVertices(); i++){
-            
-            Vertex temp = list.get(i);
-            station[i] = temp.getStationName(0);
-        }
-
-        final JComboBox<String> stationList = new JComboBox<String>(station);
         
         frame.setSize(745, 400);
         frame.setLayout(new BorderLayout());
@@ -69,9 +57,8 @@ public class SearchStation {
         stationLabel.setVerticalAlignment(JLabel.CENTER);
         stationLabel.setHorizontalAlignment (JLabel.LEFT);
         centerPanel.add(stationLabel);
-
-        stationList.setPrototypeDisplayValue("Select station that you prefer:  ");
-        centerPanel.add(stationList);
+        stationTextField.setColumns(20);
+        centerPanel.add(stationTextField);
 
         findStationButton = new JButton("Find Station");
         findStationButton.setFont(new Font("Arial", Font.BOLD,15));
@@ -98,25 +85,29 @@ public class SearchStation {
                 DepthFirstSearch searchObj = new DepthFirstSearch();
                 searchObj.edges = null;
                 
-                String Station = String.valueOf(stationList.getSelectedItem());
+                String Station = stationTextField.getText();
 
                 List<Vertex> list = StartApplication.graph.getVertices();
                 Boolean found = false;
 
                 for(int i=0; i<list.size(); i++){
                     Vertex temp = list.get(i);
-                    if(temp.getStationName(0) == Station){
+                    String tempStation = temp.getStationName(0);
+                    System.out.println(tempStation + " + " + Station);
+                    int results = tempStation.compareToIgnoreCase(Station);
+                    if(results==0){
                         JOptionPane.showMessageDialog(null,
                         "The station selected exists!",
                         "Station Found",
                         JOptionPane.INFORMATION_MESSAGE);
                         found = true;
-                    }else if((i==list.size()-1) && (found == false)){
-                        JOptionPane.showMessageDialog(null,
-                        "The station selected does not exists!",
-                        "Station Not Found",
-                        JOptionPane.INFORMATION_MESSAGE);
                     }
+                }
+                if(!found){
+                    JOptionPane.showMessageDialog(null,
+                    "The station selected does not exists!",
+                    "Station Not Found",
+                    JOptionPane.INFORMATION_MESSAGE);
                 }
 
                 

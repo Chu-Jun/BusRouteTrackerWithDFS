@@ -28,8 +28,6 @@ public class UserPage extends JFrame {
         frame.setLayout(new BorderLayout());
         frame.add(headerPanel, BorderLayout.NORTH);
         frame.add(buttonPanel, BorderLayout.WEST);
-        // setLocationRelativeTo(null);
-        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set the background colour of the panel
         headerPanel.setBackground(new Color(0x6096B4));

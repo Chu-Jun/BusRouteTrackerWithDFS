@@ -25,7 +25,6 @@ public class StartApplication extends JFrame {
 
     public StartApplication() throws IOException {
         initializeBasicGraph();
-        System.out.println(graph.countVertices());
         frame.setTitle("Bus Route Tracking App");
         frame.setResizable(false);
 
@@ -98,41 +97,6 @@ public class StartApplication extends JFrame {
             }          
         }
     }
-    
-
-
-    // public void initializeBasicGraph(){
-    //     // Create vertices
-    //     Vertex gelugor = new Vertex(0, "Gelugor");
-    //     Vertex bayanLepas = new Vertex(1, "Bayan Lepas");
-    //     Vertex bayanBaru = new Vertex(2, "Bayan Baru");
-    //     Vertex USM = new Vertex(3, "USM");
-    //     Vertex Georgetown = new Vertex(4, "Georgetown");
-
-    //     // Add vertices to the graph
-    //     graph.addVertex(gelugor);
-    //     graph.addVertex(bayanLepas);
-    //     graph.addVertex(bayanBaru);
-    //     graph.addVertex(USM);
-    //     graph.addVertex(Georgetown);
-
-        
-    //     // Create edges
-    //     Edge e1 = new Edge(gelugor, bayanLepas, 1.00);
-    //     Edge e2 = new Edge(bayanLepas, bayanBaru, 2.00);
-    //     Edge e3 = new Edge(gelugor, bayanBaru, 1.80);
-    //     Edge e4 = new Edge(bayanBaru, Georgetown, 2.00);
-    //     Edge e5 = new Edge(gelugor, USM, 1.60);
-    //     Edge e6 = new Edge(USM, Georgetown, 2.40);
-
-    //     // Add edges to the vertices
-    //     USM.addAdjacentEdge(e6);
-    //     gelugor.addAdjacentEdge(e1);
-    //     bayanLepas.addAdjacentEdge(e2);
-    //     gelugor.addAdjacentEdge(e3);
-    //     bayanBaru.addAdjacentEdge(e4);
-    //     gelugor.addAdjacentEdge(e5);
-    // }
 
 
     public void initializeBasicGraph() throws IOException{
@@ -146,9 +110,6 @@ public class StartApplication extends JFrame {
         while(scan.hasNext()){
             String curLine = scan.nextLine();
             String[] splitted = curLine.split("\t");
-            for(int i=0; i<splitted.length; i++){
-                System.out.println(i + " " + splitted[i]);
-            }
             String sourceStation = splitted[0].trim();
             String destinationStation = splitted[1].trim();
             String busFare = splitted[2];
@@ -177,11 +138,9 @@ public class StartApplication extends JFrame {
                 numOfStation++;
             }
             edgeList.add(new Edge(temp1, temp2, fee));
-            System.out.println("!!!!!!!" + fee);
+
             temp1.addAdjacentEdge(edgeList.get(counter));
             
-            System.out.println(edgeList.get(counter));
-            System.out.println("%%%%%5" + temp1.getAdjacentEdges() + "%%%%%");
             counter++;
             foundSource = foundDestination = false;
             temp1 = temp2 = null;
