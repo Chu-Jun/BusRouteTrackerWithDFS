@@ -1,18 +1,10 @@
-## Getting Started
+## CPT212 Assignment 2
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Bus Route Tracking Application
 
-## Folder Structure
+## Implementation of DFS
 
-The workspace contains two folders by default, where:
+The jar file is available for testing, you may download the jar file and try out the application.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+> Prepared by Ong Chu Jun & Tai Zee Ching
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
