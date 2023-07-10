@@ -37,7 +37,6 @@ public class DepthFirstSearch {
             return true;
         }
         Vertex u;
-        
         for (Edge e : v.getAdjacentEdges()) {
             u = e.getDestination();
 
@@ -50,10 +49,7 @@ public class DepthFirstSearch {
                     return true;
                 }else{
                     edges.remove(edges.size()-1);
-                    return false;
                 }
-            }else{
-                continue;
             }
         }
         
